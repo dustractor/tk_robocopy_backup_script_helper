@@ -1,9 +1,13 @@
 import sqlite3
 import pathlib
+import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog
 
+here = pathlib.Path(__file__).parent
+_LOG_ANALYZE = here / "log_analyze.py"
+_PYTHON = pathlib.Path(sys.executable).resolve()
 _SETTINGSPATH = "settings.db"
 
 class SettingsDatabase(sqlite3.Connection):
@@ -257,6 +261,7 @@ class App(tk.Tk):
         for source,target in settings.cx.main_view():
             lines.append(fmt.format(a=source,b=target,c=logfile))
             fmt = lineNfmt
+        lines.append('"{}" "{}" "{}"'.format(_PYTHON,_LOG_ANALYZE,logfile))
         with open(output,"w") as f:
             f.write("\n".join(lines))
 
