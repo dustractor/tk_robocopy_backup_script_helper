@@ -9,3 +9,5 @@ It provides an interface that allows you to:
 * choose the name and location of the batch file and the logfile
 
 Settings are stored in an sqlite3 database.
+
+video [here](https://youtu.be/gYSUUxtvGmM)
