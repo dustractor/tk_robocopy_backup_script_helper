@@ -223,6 +223,8 @@ class App(tk.Tk):
             item = self.targetlistbox.get(index[0])
     def add_source(self):
         p = filedialog.askdirectory()
+        if pathlib.Path(p).resolve() == here:
+            return
         settings.cx.add_source(p)
         self.update_ui()
     def remove_source(self):
@@ -231,6 +233,8 @@ class App(tk.Tk):
         self.update_ui()
     def add_target(self):
         p = filedialog.askdirectory()
+        if pathlib.Path(p).resolve() == here:
+            return
         settings.cx.add_target(self.selected_source,p)
         self.update_ui()
     def remove_target(self):
